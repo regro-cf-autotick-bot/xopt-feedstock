@@ -1,6 +1,6 @@
 {% set name = "xopt" %}
 {% set version = "3.0.0" %}
-{% set python_min = "3.10" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -23,16 +23,17 @@ requirements:
     - setuptools-scm
   run:
     - python >={{ python_min }}
-    - numpy
+    - numpy>=2.3
     - pyyaml
     - deap
     - pytorch
-    - botorch >=0.12
+    - botorch >=0.17.0
     - gpytorch
     - pandas
-    - pydantic >=2.3
+    - pydantic >=2.12
     - orjson
     - matplotlib-base
+    - gest-api
 
 test:
   imports:
