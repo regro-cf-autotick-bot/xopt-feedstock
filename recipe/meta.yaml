@@ -1,5 +1,5 @@
 {% set name = "xopt" %}
-{% set version = "3.0.0" %}
+{% set version = "3.0.1" %}
 {% set python_min = "3.11" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 233b31faeeef4c9caea6d8eae388dff9487f578fecbd257031f7ae4b451ba490
+  sha256: c1c9cec1defe479a4460db870a9d87c922f35d766083aab294252b37e7e9ed06
 
 build:
   noarch: python
