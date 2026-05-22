@@ -1,6 +1,6 @@
 {% set name = "xopt" %}
-{% set version = "2.7.0" %}
-{% set python_min = "3.10" %}
+{% set version = "3.0.0" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -8,11 +8,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d41df2f58027ab6845b5d4c13edc359bbf296680cfd1ee6cb9b2a7edfb50e976
+  sha256: 233b31faeeef4c9caea6d8eae388dff9487f578fecbd257031f7ae4b451ba490
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
@@ -23,30 +23,31 @@ requirements:
     - setuptools-scm
   run:
     - python >={{ python_min }}
-    - numpy
+    - numpy >=2.3
     - pyyaml
     - deap
     - pytorch
-    - botorch >=0.12
+    - botorch >=0.17.0
     - gpytorch
     - pandas
-    - pydantic >=2.3
+    - pydantic >=2.12
     - orjson
     - matplotlib-base
+    - gest-api
+    - scipy >=1.10.1
 
 test:
   imports:
     - xopt
   requires:
+    - {{ compiler('cxx') }}
     - pytest
     - mpi4py
     - dask
     - openssh
-    - python {{ python_min }}
-  source_files:
-    - xopt/tests
+    - libensemble
   commands:
-    - pytest xopt/tests
+    - pytest --pyargs xopt.tests -v
 
 about:
   home: https://github.com/xopt-org/{{ name }}
@@ -61,3 +62,4 @@ extra:
   recipe-maintainers:
     - ChristopherMayes
     - Roussel-Ryan
+    - pluflou
